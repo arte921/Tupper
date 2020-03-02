@@ -2,7 +2,9 @@
     <string name="app_name">Tupper</string>
     <string name="nonuminclip">Error: No numbers found in clipboard.</string>
     <string name="clear">Clear</string>
-    <string name="calculate">Calculate</string>
+    <string name="calculate">Show K value</string>
     <string name="copy">Copy</string>
     <string name="paste">Paste</string>
+    <string name="ctoclip">Copied to clipboard.</string>
+    <string name="pfromclip">Pasted from clipboard.</string>
 </resources>

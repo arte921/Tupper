@@ -29,20 +29,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateString(view: View) {
-        kView.text = getK()
+        kView.text = pixels.getK()
     }
 
     fun copy(view: View){
         val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("K", getK())
+        val clip = ClipData.newPlainText("K", pixels.getK())
         clipboard.setPrimaryClip(clip)
+        kView.text = getString(R.string.ctoclip)
     }
 
     fun paste(view: View){
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val ktext = clipboard?.primaryClip?.getItemAt(0)?.text.toString().replace(Regex("[^0-9]"), "")
         if(!ktext.isBlank()){
-            kView.text = ktext
+            kView.text = getString(R.string.pfromclip)
             pixels.getFromString(ktext)
         } else kView.text = getString(R.string.nonuminclip)
 

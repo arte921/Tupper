@@ -14,6 +14,9 @@ class Pixels(val xw: Float, val yw: Float) {
 
     var grid: Array<BooleanArray> = Array(xw.toInt()) { BooleanArray(yw.toInt()) { false } }
 
+    var cache = ""
+    var oldGrid = Array(xw.toInt()) { BooleanArray(yw.toInt()) { false } }
+
     fun updateSize(w: Int,h: Int){
         if(w/xw<h/yw){
             canvasw = w.toFloat()
@@ -39,17 +42,29 @@ class Pixels(val xw: Float, val yw: Float) {
     }
 
     fun clear(){
-        for(x in 0 until pixels.xw.toInt()) for(y in 0 until pixels.yw.toInt()){
+        for(x in 0 until xw.toInt()) for(y in 0 until yw.toInt()){
             grid[x][y] = false
         }
     }
 
     fun getFromString(input: String){
         val bigK = BigInteger(input,10)
-        for(xi in 0 until pixels.xw.toInt()) for(yi in 0 until pixels.yw.toInt()){
+        for(xi in 0 until xw.toInt()) for(yi in 0 until yw.toInt()){
             val x: Int = xi
             val y: BigInteger = yi.toBigInteger() + bigK
             grid[(xw-1-xi).toInt()][yi] = 1/2 < floor(((y.divideAndRemainder(17.toBigInteger())[0].divide(2.toBigInteger().pow((17*x).toBigInteger().plus(y.mod(17.toBigInteger())).toInt()))).mod(2.toBigInteger())).toDouble())
         }
+    }
+
+    fun getK(): String{
+        if(grid.contentEquals(oldGrid)) return cache
+        var binaryString = ""
+        for(x in 0 until xw.toInt()) for(y in yw.toInt()-1 downTo 0){
+            binaryString += if(grid[x][y]) "1" else "0"
+        }
+        val kBigInt = BigInteger(binaryString,2)
+        kString = (kBigInt * yw.toInt().toString().toBigInteger()).toString(10)
+        cache = kString
+        return kString
     }
 }
