@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="bgColor">#000000</color>
-    <color name="gridColor">#FF0000</color>
-    <color name="pxColor">#FFFFFF</color>
+    <color name="bgColor">#FFFFFF</color>
+    <color name="gridColor">#808080</color>
+    <color name="pxColor">#000000</color>
 </resources>

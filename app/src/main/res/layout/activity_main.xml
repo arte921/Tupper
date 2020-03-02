@@ -29,12 +29,11 @@
 
     <Switch
         android:id="@+id/drawSwitch"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:checked="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pasteButton"
         app:layout_constraintTop_toTopOf="@+id/clearButton"
         tools:checked="true" />
 
@@ -75,5 +74,14 @@
         android:text="@string/calculate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/clearButton" />
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="share"
+        android:text="@string/sharebutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pasteButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

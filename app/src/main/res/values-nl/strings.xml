@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tupper</string>
+    <string name="nonuminclip">Error: Geen getal gevonden in klembord</string>
+    <string name="clear">Wissen</string>
+    <string name="calculate">Bereken</string>
+    <string name="copy">Kopieren</string>
+    <string name="paste">Plakken</string>
+    <string name="ctoclip">Gekopieerd maar klembord</string>
+    <string name="pfromclip">Geplakt van klembord</string>
+    <string name="sharevia">Deel K via:</string>
+    <string name="sharebutton">Deel</string>
+</resources>

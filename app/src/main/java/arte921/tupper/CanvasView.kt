@@ -8,6 +8,9 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class CanvasView(context: Context, attrs: AttributeSet): View(context, attrs) {
     private val gridColor = ResourcesCompat.getColor(resources,R.color.gridColor,null)
@@ -24,7 +27,7 @@ class CanvasView(context: Context, attrs: AttributeSet): View(context, attrs) {
         style = Paint.Style.FILL
         strokeJoin = Paint.Join.ROUND
         strokeCap = Paint.Cap.ROUND
-        strokeWidth = 10f
+        strokeWidth = 1f
     }
 
     private val pixelPaint = Paint().apply {
@@ -34,7 +37,7 @@ class CanvasView(context: Context, attrs: AttributeSet): View(context, attrs) {
         style = Paint.Style.FILL
         strokeJoin = Paint.Join.ROUND
         strokeCap = Paint.Cap.ROUND
-        strokeWidth = 2f
+        strokeWidth = 1f
         textSize = 100f
     }
 
@@ -59,12 +62,34 @@ class CanvasView(context: Context, attrs: AttributeSet): View(context, attrs) {
             var gy = yi.toFloat()
             if(pixels.grid[xi][yi]) canvas.drawRect(pixels.xtoc(gx),pixels.ytoc(gy),pixels.xtoc(gx)+pixels.size,pixels.ytoc(gy)+pixels.size,pixelPaint)
         }
+
+        for(xi in 0..pixels.xw.toInt()){
+            val x = xi.toFloat() * pixels.size
+            canvas.drawLine(x+0.5f,0f,x+0.5f,pixels.yw*pixels.size,gridPaint)
+        }
+
+        for(yi in 0..pixels.yw.toInt()){
+            val y = yi.toFloat() * pixels.size
+            canvas.drawLine(0f,y+0.5f,pixels.xw * pixels.size,y+0.5f,gridPaint)
+        }
     }
 
     override fun onTouchEvent(e: MotionEvent): Boolean {
+        /*
+        when(e.action){
+            MotionEvent.ACTION_UP -> {
+                pixels.touched(e.x,e.y)
+                invalidate()
+            }
+            MotionEvent.ACTION_MOVE -> {
+                GlobalScope.launch{
+                    pixels.touched(e.x,e.y)
+                }
+                invalidate()
+            }
+        }*/
         pixels.touched(e.x,e.y)
         invalidate()
-
         return true
     }
 }
